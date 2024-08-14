@@ -29,8 +29,16 @@ const ensureAuthenticated = async (req, res, next) => {
         return responds.error(req, res, {message: 'Access token not found'}, 401);
     }
 
+    let token;
+
+    if (accessToken.startsWith('Bearer ')) {
+        token = accessToken.split(' ')[1];
+    } else {
+        token = accessToken;
+    }
+
     // Checking if this accessToken is in blacklist
-    const check = await invalidTokensModel.findOneRecord({accessToken: accessToken})
+    const check = await invalidTokensModel.findOneRecord({accessToken: token})
 
     if (check) {
         return responds.error(req, res, {message: 'Access token invalid', code: 'AccessTokenInvalid'}, 401)
@@ -38,7 +46,7 @@ const ensureAuthenticated = async (req, res, next) => {
 
 
     try {
-        const decodedAccessToken = jwt.verify(accessToken, config.jwt.secret);
+        const decodedAccessToken = jwt.verify(token, config.jwt.secret);
 
         // Adding user object to the request with information provided by jwt
         // Remember: Don't include critical information
@@ -56,6 +64,7 @@ const ensureAuthenticated = async (req, res, next) => {
         if (error instanceof jwt.TokenExpiredError) {
             return responds.error(req, res, {message: 'Access token expired', code: 'AccessTokenExpired'}, 401)
         } else if (error instanceof jwt.JsonWebTokenError) {
+            console.log('error there')
             return responds.error(req, res, {message: 'Access token invalid', code: 'AccessTokenInvalid'}, 401)
         } else {
             return responds.error(req, res, {message: error.message}, 500)

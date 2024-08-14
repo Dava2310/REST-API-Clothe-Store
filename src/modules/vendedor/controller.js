@@ -10,7 +10,7 @@ const getOneVendedor = async (req, res) => {
 }
 
 const createVendedor = async (req, res) => {
-    return responds.success(req, res, {message: 'Creating a vendedor'}, 200)
+    return responds.success(req, res, {message: 'Creating a vendedor'}, 201)
 }
 
 const updateVendedor = async (req, res) => {

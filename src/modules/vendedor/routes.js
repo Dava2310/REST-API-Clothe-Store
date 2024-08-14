@@ -8,7 +8,8 @@ router.get('/', auth.ensureAuthenticated, auth.authorize(['admin', 'user']), ctr
 
 router.get('/:vendedorId', auth.ensureAuthenticated, auth.authorize(['admin', 'user']), ctrl.getOneVendedor);
 
-router.post('/', auth.ensureAuthenticated, auth.authorize(['admin']), ctrl.createVendedor);
+// router.post('/', auth.ensureAuthenticated, auth.authorize(['admin']), ctrl.createVendedor);
+router.post('/', ctrl.createVendedor);
 
 router.patch('/:vendedorId', auth.ensureAuthenticated, auth.authorize(['admin']), ctrl.updateVendedor);
 

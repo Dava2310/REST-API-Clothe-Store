@@ -1,0 +1,62 @@
+Pasos para crear un nuevo modulo:
+
+0- Definir la estructura de la tabla del modulo correspondiente en la BD
+1- Crear el Schema en Validations segun la tabla de la BD
+2- Crear en modules una carpeta para el modulo. Que contenga dos archivos, controllers.js y routes.js
+3- Crear el modelo, que importe las funciones de mysql.js añadiendo el nombre de la tabla que corresponda
+4- Añadir la ruta en la app de express
+5- Definir las rutas basicas, con su funcion respectiva del controlador
+6- Añadir a cada funcion de un controlador una respuesta 200 para saber que la ruta funciona correctamente
+
+TEST PARA VENDEDORES
+
+VENDEDORES
+	GET VENDEDORES
+
+		Casos de Exito: Con autentificación adecuada
+
+		Debe responder con un status 200
+		Debe responder con un error false
+		Debe responder en formato JSON
+		Debe devolver un array con todos los vendedores
+
+		Casos de Fracaso: Con autentificación inadecuada
+
+		Debe responder con un error true
+		Debe responder en formato JSON
+		Debe responder con un status 401
+		Debe volver un mensaje de Invalid Token
+		
+
+	GET ONE VENDEDOR
+
+		Casos de Exito: Con autentificacion adecuada
+		
+		Debe responder con un status 200
+		Debe responder con un error false
+		Debe responder en formato JSON
+		Debe devolver un vendedor
+
+		Casos de Fracaso: Con autentificación inadecuada
+
+		Debe responder con un error true
+		Debe responder en formato JSON
+		Debe responder con un status 401
+		Debe volver un mensaje de Invalid Token
+
+	REGISTER ONE VENDEDOR
+		
+		Casos de Exito:
+			Debe responder con un status 201
+			Debe responder con un error false
+			Debe responder en formato JSON
+			Debe devolver un mensaje: "Vendedor creado exitosamente"
+
+		Casos de Fracaso:
+			Con autenticacion inadecuada
+			Con datos invalidos
+				Datos Faltantes
+				Cedula repetida
+
+	UPDATE ONE VENDEDOR
+	DELETE ONE VENDEDOR
