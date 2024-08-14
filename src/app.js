@@ -8,6 +8,7 @@ import cors from 'cors';
 // Importing routes
 import userRoutes from './modules/users/routes.js';
 import authRoutes from './modules/auth/routes.js';
+import vendedorRoutes from './modules/vendedor/routes.js';
 
 // Import Swagger setup
 import swaggerSetup from './swagger.js';  // Ajusta la ruta si es necesario
@@ -29,6 +30,7 @@ app.set('port', config.app.port);
 // Including routes
 app.use(userRoutes);
 app.use(authRoutes);
+app.use('/api/vendedores', vendedorRoutes);
 
 // Main Route
 app.get('/', (req, res) => {

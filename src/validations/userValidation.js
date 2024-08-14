@@ -9,7 +9,7 @@ const userRegister = Joi.object({
     email: Joi.string().email().lowercase().required(),
     
     // Role
-    role: Joi.string().valid(...['admin','moderator','user']).required(),
+    role: Joi.string().valid(...['admin','user']).required(),
     
     // Password
     password: Joi.string().min(8).required(),

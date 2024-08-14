@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS auth;
-CREATE DATABASE auth;
-USE auth;
+DROP DATABASE IF EXISTS kanaka;
+CREATE DATABASE kanaka;
+USE kanaka;
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE users(
@@ -27,4 +27,18 @@ CREATE TABLE invalidTokens (
     accessToken VARCHAR(255) NOT NULL,
     userId INT NOT NULL,
     expirationTime BIGINT NOT NULL
+);
+
+DROP TABLE IF EXISTS vendedor;
+CREATE TABLE vendedor (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100),
+    apellido VARCHAR(100),
+    cedula VARCHAR(100),
+    direccion VARCHAR(255),
+    telefono VARCHAR(100),
+    email VARCHAR(100),
+    estado VARCHAR(100) DEFAULT 'ACTIVO', -- Activo, Inactivo
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
