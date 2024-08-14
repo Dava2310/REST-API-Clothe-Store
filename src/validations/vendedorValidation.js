@@ -9,7 +9,7 @@ const vendedor = Joi.object({
         .max(50)
         .required()
         .messages({
-            'string.pattern.base': 'El nombre solo puede contener letras y espacios'
+            'string.pattern.base': 'El nombre o apellido solo puede contener letras y espacios'
         }),
 
     // Apellido
@@ -19,7 +19,7 @@ const vendedor = Joi.object({
         .max(50)
         .required()
         .messages({
-            'string.pattern.base': 'El apellido solo puede contener letras y espacios.'
+            'string.pattern.base': 'El nombre o apellido solo puede contener letras y espacios'
         }),
 
     // Dirección
@@ -41,7 +41,9 @@ const vendedor = Joi.object({
         .pattern(/^[VEP]-\d{7,8}$/)
         .required()
         .messages({
-            'string.pattern.base': 'La cédula debe comenzar con V, E o P, seguida de 7 u 8 dígitos numéricos.',
+            'string.pattern.base': 'La cédula debe comenzar con V, E o P, seguida de 7 u 8 dígitos numéricos',
             'any.required': 'La cédula es obligatoria.'
         })
 })
+
+export default vendedor;
